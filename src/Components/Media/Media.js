@@ -1,10 +1,15 @@
+import "./Media.css";
 import { MiniDrawer } from "../../MiniDrawer";
 
-function Media() {
+function Media({ datum }) {
   return (
     <div>
       <MiniDrawer />
-      <div>This is Media Page</div>
+      <div id="media-page">
+        {datum.map((data) => (
+          <img className="mediadisp" src={data.img} />
+        ))}
+      </div>
     </div>
   );
 }

@@ -14,7 +14,7 @@ function App() {
         <Route path="/" element={<MiniDrawer />} />
         <Route path="/dashboard" element={<Dashboard datum={data} />} />
         <Route path="/add-new-post" element={<NewPost />} />
-        <Route path="/media" element={<Media />} />
+        <Route path="/media" element={<Media datum={data} />} />
       </Routes>
     </div>
   );
