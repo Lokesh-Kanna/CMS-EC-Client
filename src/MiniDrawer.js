@@ -20,6 +20,7 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import PostAddIcon from "@mui/icons-material/PostAdd";
 import PermMediaIcon from "@mui/icons-material/PermMedia";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
@@ -140,16 +141,21 @@ export function MiniDrawer() {
                   </Link>
                 ) : null}
                 {index === 1 ? (
+                  <Link to="/profile">
+                    <AccountCircleIcon />
+                  </Link>
+                ) : null}
+                {index === 2 ? (
                   <Link to="/add-new-post">
                     <PostAddIcon />{" "}
                   </Link>
                 ) : null}
-                {index === 2 ? (
+                {index === 3 ? (
                   <Link to="/media">
                     <PermMediaIcon />
                   </Link>
                 ) : null}
-                {index === 3 ? <DriveFileRenameOutlineIcon /> : null}
+                {index === 4 ? <DriveFileRenameOutlineIcon /> : null}
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
