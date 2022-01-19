@@ -26,7 +26,10 @@ function App() {
           element={<NewPost datum={allData} addData={addData} />}
         />
         <Route path="/media" element={<Media datum={allData} />} />
-        <Route path="/profile" element={<Profile datum={allData} />} />
+        <Route
+          path="/profile"
+          element={<Profile datum={allData} remData={addData} />}
+        />
         <Route
           path="/edit-post/:id"
           element={<EditPost datum={allData} addData={addData} />}

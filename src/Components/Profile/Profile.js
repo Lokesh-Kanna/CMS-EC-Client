@@ -1,8 +1,9 @@
+import "./Profile.css";
 import { MiniDrawer } from "../../MiniDrawer";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 
-function Profile({ datum }) {
+function Profile({ datum, remData }) {
   return (
     <div>
       <MiniDrawer />
@@ -18,6 +19,8 @@ function Profile({ datum }) {
               recommend={data.recommend}
               img={data.img}
               id={index}
+              remData={remData}
+              datum={datum}
             />
           );
         })}
@@ -27,7 +30,18 @@ function Profile({ datum }) {
   );
 }
 
-function CardDisp({ title, type, auth, rating, summary, recommend, img, id }) {
+function CardDisp({
+  title,
+  type,
+  auth,
+  rating,
+  summary,
+  recommend,
+  img,
+  id,
+  remData,
+  datum,
+}) {
   const navigate = useNavigate();
   return (
     <div class="card mb-3" style={{ maxWidth: 1000 }}>
@@ -56,14 +70,25 @@ function CardDisp({ title, type, auth, rating, summary, recommend, img, id }) {
               <small class="text-muted">Last updated 3 mins ago</small>
             </p>
           </div>
-          <Button
-            onClick={() => {
-              navigate("/edit-post/" + id);
-            }}
-            variant="contained"
-          >
-            Edit
-          </Button>
+          <div className="card-actions">
+            <Button
+              onClick={() => {
+                navigate("/edit-post/" + id);
+              }}
+              variant="contained"
+            >
+              Edit
+            </Button>
+            <Button
+              onClick={() => {
+                remData(datum.filter((data, index) => index != id));
+              }}
+              variant="contained"
+              color="error"
+            >
+              Delete
+            </Button>
+          </div>
         </div>
       </div>
     </div>

@@ -12,13 +12,13 @@ function EditPost({ datum, addData }) {
   const { id } = useParams();
   const data = datum[id];
 
-  const [title, setTitle] = useState();
-  const [type, setType] = useState();
-  const [auth, setAuth] = useState();
-  const [yourRating, setYourRating] = useState();
-  const [recommend, setRecommend] = useState();
-  const [img, setImg] = useState();
-  const [summary, setSummary] = useState();
+  const [title, setTitle] = useState(data.title);
+  const [type, setType] = useState(data.type);
+  const [auth, setAuth] = useState(data.auth);
+  const [yourRating, setYourRating] = useState(data.yourRating);
+  const [recommend, setRecommend] = useState(data.recommend);
+  const [img, setImg] = useState(data.img);
+  const [summary, setSummary] = useState(data.summary);
   return (
     <div>
       <MiniDrawer />
@@ -92,7 +92,7 @@ function EditPost({ datum, addData }) {
           <Button
             variant="contained"
             onClick={() => {
-              const EditPost = {
+              const updatedPost = {
                 title,
                 type,
                 auth,
@@ -101,7 +101,8 @@ function EditPost({ datum, addData }) {
                 img,
                 summary,
               };
-              const editedPost = [...datum, EditPost];
+              const editedPost = [...datum];
+              editedPost[id] = updatedPost;
               addData(editedPost);
               navigate("/profile");
             }}
