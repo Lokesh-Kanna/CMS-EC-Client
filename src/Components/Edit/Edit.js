@@ -1,11 +1,24 @@
 import * as React from "react";
 import "./Edit.css";
+import { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { MiniDrawer } from "../../MiniDrawer";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
-function EditPost() {
+function EditPost({ datum, addData }) {
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const data = datum[id];
+
+  const [title, setTitle] = useState();
+  const [type, setType] = useState();
+  const [auth, setAuth] = useState();
+  const [yourRating, setYourRating] = useState();
+  const [recommend, setRecommend] = useState();
+  const [img, setImg] = useState();
+  const [summary, setSummary] = useState();
   return (
     <div>
       <MiniDrawer />
@@ -23,24 +36,32 @@ function EditPost() {
             id="outlined-basic"
             label="Title"
             variant="filled"
+            defaultValue={data.title}
+            onChange={(event) => setTitle(event.target.value)}
           />
           <TextField
             className="inputfields"
             id="outlined-basic"
             label="Type"
             variant="filled"
+            defaultValue={data.type}
+            onChange={(event) => setType(event.target.value)}
           />
           <TextField
             className="inputfields"
             id="outlined-basic"
             label="Author/Director"
             variant="filled"
+            defaultValue={data.auth}
+            onChange={(event) => setAuth(event.target.value)}
           />
           <TextField
             className="inputfields"
             id="outlined-basic"
             label="Your rating out of 10"
             variant="filled"
+            defaultValue={data.yourRating}
+            onChange={(event) => setYourRating(event.target.value)}
           />
 
           <TextField
@@ -48,22 +69,45 @@ function EditPost() {
             id="outlined-basic"
             label="Would you suggest this to others?"
             variant="filled"
+            defaultValue={data.recommend}
+            onChange={(event) => setRecommend(event.target.value)}
           />
           <TextField
             className="inputfields"
             id="outlined-basic"
             label="Image URL"
             variant="filled"
+            defaultValue={data.img}
+            onChange={(event) => setImg(event.target.value)}
           />
           <TextField
             id="standard-multiline-static"
             label="Multiline"
             multiline
             rows={4}
-            defaultValue="Summary"
             variant="filled"
+            defaultValue={data.summary}
+            onChange={(event) => setSummary(event.target.value)}
           />
-          <Button variant="contained">Save Edit</Button>
+          <Button
+            variant="contained"
+            onClick={() => {
+              const EditPost = {
+                title,
+                type,
+                auth,
+                yourRating,
+                recommend,
+                img,
+                summary,
+              };
+              const editedPost = [...datum, EditPost];
+              addData(editedPost);
+              navigate("/profile");
+            }}
+          >
+            Save Edit
+          </Button>
         </Box>
       </div>
     </div>

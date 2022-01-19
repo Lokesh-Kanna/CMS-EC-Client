@@ -12,7 +12,7 @@ function NewPost({ datum, addData }) {
   const [title, setTitle] = useState();
   const [type, setType] = useState();
   const [auth, setAuth] = useState();
-  const [rating, setRating] = useState();
+  const [yourRating, setYourRating] = useState();
   const [recommend, setRecommend] = useState();
   const [img, setImg] = useState();
   const [summary, setSummary] = useState();
@@ -54,7 +54,7 @@ function NewPost({ datum, addData }) {
             id="outlined-basic"
             label="Your rating out of 10"
             variant="filled"
-            onChange={(event) => setRating(event.target.value)}
+            onChange={(event) => setYourRating(event.target.value)}
           />
 
           <TextField
@@ -87,7 +87,7 @@ function NewPost({ datum, addData }) {
                 title,
                 type,
                 auth,
-                rating,
+                yourRating,
                 recommend,
                 img,
                 summary,
